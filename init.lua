@@ -842,13 +842,51 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    'comfysage/evergarden',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+    opts = {
+      transparent_background = false,
+      variant = 'hard', -- 'hard'|'medium'|'soft'
+      override_terminal = true,
+      style = {
+        tabline = { 'reverse' },
+        search = { 'italic' },
+        incsearch = { 'reverse' },
+        types = { 'italic' },
+        keyword = { 'italic' },
+        comment = { 'italic' },
+        sign = { highlight = false },
+      },
+      integrations = {
+        blink_cmp = true,
+        cmp = true,
+        gitsigns = true,
+        indent_blankline = { enable = true, scope_color = 'green' },
+        nvimtree = true,
+        rainbow_delimiters = true,
+        symbols_outline = true,
+        telescope = true,
+        which_key = true,
+      },
+      overrides = {
+        Normal = {
+          '#fddce3',
+          '#1d2021',
+
+          -- Additional highlight options can be included here
+          style = { 'bold', 'italic' },
+        },
+        Keyword = {
+          fg = '#ce96de',
+          bg = '#ae45be',
+        },
+      },
+    },
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      vim.cmd.colorscheme 'evergarden'
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
@@ -881,7 +919,7 @@ require('lazy').setup({
       --  and try some other statusline plugin
       local statusline = require 'mini.statusline'
       -- set use_icons to true if you have a Nerd Font
-      statusline.setup { use_icons = vim.g.have_nerd_font }
+      statusline.setup { use_icons = true }
 
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
@@ -951,21 +989,7 @@ require('lazy').setup({
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
     -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
+    icons = {},
   },
 })
 
