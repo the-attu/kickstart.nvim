@@ -118,7 +118,18 @@ vim.schedule(function()
 end)
 
 -- Enable break indent
+vim.opt.tabstop = 4 -- Number of spaces that a <Tab> in the file counts for
+vim.opt.shiftwidth = 4 -- Number of spaces to use for each step of (auto)indent
+vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.breakindent = true
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'd' },
+  callback = function()
+    vim.opt.tabstop = 2
+    vim.opt.shiftwidth = 2
+  end,
+})
 
 -- Save undo history
 vim.opt.undofile = true
