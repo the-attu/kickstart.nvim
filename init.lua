@@ -848,61 +848,19 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'comfysage/evergarden',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    opts = {
-      transparent_background = false,
-      variant = 'hard', -- 'hard'|'medium'|'soft'
-      override_terminal = true,
-      style = {
-        tabline = { 'reverse' },
-        search = { 'italic' },
-        incsearch = { 'reverse' },
-        types = { 'italic' },
-        keyword = { 'italic' },
-        comment = { 'italic' },
-        sign = { highlight = false },
-      },
-      integrations = {
-        blink_cmp = true,
-        cmp = true,
-        gitsigns = true,
-        indent_blankline = { enable = true, scope_color = 'green' },
-        nvimtree = true,
-        rainbow_delimiters = true,
-        symbols_outline = true,
-        telescope = true,
-        which_key = true,
-      },
-      overrides = {
-        Normal = {
-          '#fddce3',
-          '#1d2021',
-
-          -- Additional highlight options can be included here
-          style = { 'bold', 'italic' },
-        },
-        Keyword = {
-          fg = '#ce96de',
-          bg = '#ae45be',
-        },
-      },
-    },
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'evergarden'
-
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
+  {
+      'sainnhe/everforest',
+      lazy = false,
+      priority = 1000,
+      config = function()
+        -- Optionally configure and load the colorscheme
+        -- directly inside the plugin declaration.
+        vim.g.everforest_better_performance = 1
+        vim.g.everforest_background = 'hard'
+        vim.g.everforest_enable_italic = true
+        vim.cmd.colorscheme('everforest')
+      end
+   },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
